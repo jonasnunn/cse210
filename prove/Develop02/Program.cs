@@ -2,7 +2,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        Journal journal1 = new Journal(); //When this is recreated it will erase all of what came before it.
+        Journal journal1 = new Journal();
         bool run = true;
         while (run == true){
             // Get input from user

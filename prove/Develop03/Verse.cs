@@ -4,35 +4,27 @@ public class Verse
     private string _reference = "Ether 12:6";
     private string[] _wordArray;
     private List<string> _wordList = new List<string>();
-    private List<string> _hideList = new List<string>();
+    private List<string> _hidenList = new List<string>();
 
     public Verse()
     {
-        ParseVerse(_text);
+    
     }
 
-    public List<string> getWords()
-    {   
-        if (_hideList.Count == 0)
-        {
-            return _wordList;
-        }
-
-        else
-        {
-            return _hideList;
-        }
-    }
-
-    public List<string> hideWords()
+    public List<string> hideWords(List<string> WordList)
     {
-        WordHider hide1 = new WordHider();
-        List<string> words = hide1.returnHidden();
-        _wordList = words;
-        return _wordList;
+        Random rnd = new Random();
+        for (int i = 0; i < 5; i++)
+        {
+            int randInt = rnd.Next(WordList.Count);
+            WordList.RemoveAt(randInt);
+            string blank = "______";
+            WordList.Insert(randInt, blank);
+        }
+        return WordList;
     }
 
-    private void ParseVerse(string text)
+    public void ParseVerse(string text)
     {
         _wordArray = text.Split(" ");
         _wordList = _wordArray.ToList();
@@ -40,7 +32,7 @@ public class Verse
 
     public void DisplayVerse()
     {
-        if (_hideList.Count == 0)
+        if (_hidenList.Count == 0)
         {
             Console.Clear();
             Console.WriteLine(_reference);
@@ -55,7 +47,7 @@ public class Verse
         {
             Console.Clear();
             Console.WriteLine(_reference);
-            foreach (string word in _hideList)
+            foreach (string word in _hidenList)
             {
                 Console.Write(word);
                 Console.Write(" ");
@@ -66,6 +58,6 @@ public class Verse
 
     public void UpdateVerse(List<string> newList)
     {
-        _hideList = newList;
+        _hidenList = newList;
     }
 }

@@ -4,22 +4,30 @@ class Program
 {
     static void Main(string[] args)
     {
-        Verse ether = new Verse();
-        ether.DisplayVerse();
+        // Display the text.
+        Text lorem = new Text();
+        lorem.DisplayText();
+
+        // Start event controlled loop.
         bool run = true;
         while (run == true){
             Console.WriteLine("Press enter to hide words or type quit");
             string userInput = Console.ReadLine();
+            
+            // If they press enter hide random words and display text.
             if (userInput == "")
             {
-                List<string> newList = ether.hideWords();
-                ether.DisplayVerse();
-                ether.UpdateVerse(newList);
+                lorem.hideWords();
+                lorem.DisplayText();
             }
+            
+            // End program is quit entered.
             else if (userInput.ToLower() == "quit")
             {
                 run = false;
             }
+            
+            // Handle invalid input.
             else
             {
                 Console.WriteLine("Invalid Input");
